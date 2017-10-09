@@ -2,10 +2,17 @@
 
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+if(array_key_exists("host",$url)) {
+  $host = $url["host"];
+  $username = $url["user"];
+  $password = $url["pass"];
+  $database = substr($url["path"], 1);
+} else {
+  $host = '127.0.0.1';
+  $username = 'forge';
+  $password = '';
+  $database = 'forge';
+}
 
 return [
 
